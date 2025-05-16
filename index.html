@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قرآني معاي</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- لتحسين مظهر الأيقونات، يمكنك إضافة مكتبة أيقونات مثل Font Awesome -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+</head>
+<body>
+    <div class="app-container">
+        <button class="sidebar-toggle-btn" id="sidebar-toggle" aria-label="فتح/إغلاق القائمة">☰</button>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">قرآني<span>معاي</span></div>
+            </div>
+            <nav>
+                <ul id="sidebar-main-nav">
+                    <li><a href="#" id="nav-new-chat" class="active"><span class="icon">➕</span> محادثة جديدة</a></li>
+                    <!-- يمكنك إضافة عنوان لقائمة المحادثات الأخيرة إذا أردت -->
+                    <!-- <li class="nav-section-title">محادثات سابقة</li> -->
+                </ul>
+                <ul class="recent-recitations-list" id="recent-recitations-list-ui">
+                    <!-- المحادثات الأخيرة ستُضاف هنا بواسطة JavaScript -->
+                </ul>
+                <ul id="sidebar-other-nav">
+                    <li><a href="#" id="nav-khatma"><span class="icon">🌙</span> ختمتي</a></li>
+                    <!-- عنصر Khatma progress سيُضاف هنا بواسطة JavaScript -->
+                    <li><a href="#" id="nav-reciters"><span class="icon">🎧</span> المقرئين</a></li>
+                    <li><a href="#" id="nav-spiritual-ai"><span class="icon">🧠</span> الذكاء الروحي</a></li>
+                    <li><a href="#" id="nav-zen-mode-toggle"><span class="icon">🧘</span> وضع الخشوع</a></li>
+                    <li><a href="#" id="nav-settings"><span class="icon">⚙️</span> الإعدادات</a></li>
+                </ul>
+            </nav>
+            <!-- يمكن وضع الـ footer هنا إذا احتجت لمحتوى ثابت أسفل القائمة -->
+        </aside>
+
+        <main class="chat-interface" id="chat-interface">
+            <header class="chat-header">
+                 <span class="app-title" id="chat-interface-title">محادثة مع القرآن</span>
+                 <div class="chat-tools">
+                     <button id="quick-search-btn" aria-label="بحث سريع" title="بحث سريع في القرآن (قيد التطوير)">🔍</button>
+                     <button id="browse-surahs-btn" aria-label="تصفح السور" title="تصفح السور والأجزاء (قيد التطوير)">📂</button>
+                 </div>
+            </header>
+            <div class="message-area" id="message-area">
+                <!-- فقاعات الرسائل ستُضاف هنا بواسطة JavaScript -->
+            </div>
+            <div class="input-area">
+                <button id="send-btn" aria-label="إرسال">💌</button> <!-- يمكنك استخدام أيقونة إرسال أفضل -->
+                <input type="text" id="user-input" placeholder="اكتب سؤالك أو اطلب سورة..." autocomplete="off">
+                <button id="voice-input-btn" aria-label="اسأل بالصوت" title="اسأل بالصوت (قيد التطوير)">🎙️</button>
+            </div>
+        </main>
+    </div>
+
+    <div class="zen-mode-overlay" id="zen-mode-overlay">
+        <button class="zen-close-btn" id="zen-close-btn" aria-label="إغلاق وضع الخشوع">×</button>
+        <div class="zen-ayah" id="zen-ayah-display"></div>
+        <div class="zen-surah-info" id="zen-surah-info-display"></div>
+        <!-- أزرار التنقل في وضع الخشوع ستُضاف هنا بواسطة JavaScript -->
+    </div>
+
+    <!-- ملف JavaScript يُربط في نهاية الـ body لأداء أفضل -->
+    <script src="js/main.js"></script>
+</body>
+</html>
