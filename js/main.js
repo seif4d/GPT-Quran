@@ -1,5 +1,5 @@
 // --- Configuration and State ---
-const ALL_SURAHS_META_PATH = 'assest/allSurahsMeta.json'; 
+const ALL_SURAHS_META_PATH = 'allSurahsMeta.json'; 
 let allSurahsMeta = []; 
 const fetchedSurahsCache = {};
 let currentChatID = `chat_init_${Date.now()}`;
@@ -54,7 +54,7 @@ async function fetchSurahData(surahIndexNumeric) {
         console.error("fetchSurahData called with invalid surahIndex:", surahIndexNumeric);
         return null;
     }
-    const filename = `assest/surah/surah_${surahIndexNumeric}.json`; 
+    const filename = `surah/surah_${surahIndexNumeric}.json`; 
     
     if (fetchedSurahsCache[surahIndexNumeric]) {
         return fetchedSurahsCache[surahIndexNumeric];
@@ -1189,7 +1189,7 @@ function updateKhatmaProgressDisplay() { /* ... (as defined before) ... */
 // --- (الكود السابق يبقى كما هو حتى هذا القسم) ---
 
 // --- Constants for Paths (NEW) ---
-const TAFSIR_BASE_PATH = 'assest/tafseer'; // المسار الأساسي لمجلد التفسير
+const TAFSIR_BASE_PATH = 'tafseer'; // المسار الأساسي لمجلد التفسير
 
 // --- (بقية الدوال المساعدة مثل arabicToIndianNumerals, normalizeArabicText, fetchSurahData, findSurahMeta, matchSurah) ---
 // تأكد من أن هذه الدوال موجودة ومعرّفة بشكل صحيح قبل الدوال التي ستستخدمها.
