@@ -1,42 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Noto+Kufi+Arabic:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Tajawal:wght@300;400;500;700&family=Orbitron:wght@400;500;700&display=swap');
 
 :root {
-    /* Color Palette - Inspired by Dawn/Dusk & Celestial Themes */
-    --bg-dark: #0d1117; /* Deep space blue/grey */
-    --bg-medium: #161b22; /* Slightly lighter for surfaces */
-    --bg-light: #21262d; /* For cards, input backgrounds */
+    /* --- Dark Sci-Fi / Spiritual Tech Palette --- */
+    --bg-deep-space: #0A0F18;
+    --bg-nebula-void: #101828;
+    --bg-star-cluster: #18243C;
+    --bg-overlay-glass: rgba(16, 24, 40, 0.75); /* Slightly increased opacity for glass */
+
+    --text-luminous: #E0E7FF;
+    --text-celestial: #A0B0D0;
+    --text-faded-echo: #607090;
+
+    --accent-aurora-blue: #3E7BFF;
+    --accent-aurora-blue-glow: rgba(62, 123, 255, 0.4);
+    --accent-aurora-blue-hover: #6899FF;
     
-    --text-primary: #c9d1d9; /* Light grey for primary text */
-    --text-secondary: #8b949e; /* Medium grey for secondary text/icons */
-    
-    --accent-primary: #58a6ff; /* A vibrant, yet calming blue */
-    --accent-primary-hover: #79c0ff;
-    --accent-secondary: #3fb950; /* A serene green for positive actions or highlights */
-    --accent-secondary-hover: #56d364;
-    --accent-error: #f85149; /* For error messages or critical alerts */
+    --accent-pulsar-green: #00DDAA;
+    --accent-pulsar-green-glow: rgba(0, 221, 170, 0.35);
+    --accent-pulsar-green-hover: #33E8C0;
 
+    --accent-nova-orange: #FF8A00;
+    --accent-nova-orange-glow: rgba(255, 138, 0, 0.3);
 
-    --user-bubble-bg: linear-gradient(135deg, #1f6feb, #58a6ff);
-    --quran-bubble-bg: var(--bg-light);
-    --system-bubble-bg: rgba(200, 200, 220, 0.05); /* Subtle system messages */
-    --system-bubble-error-bg: rgba(248, 81, 73, 0.1); /* Background for error system messages */
+    --accent-warning-yellow: #FFC107;
+    --accent-error-red: #F44336;
+    --accent-error-red-glow: rgba(244, 67, 54, 0.3);
 
+    --user-bubble-bg: linear-gradient(145deg, var(--accent-aurora-blue), #2a5bb5);
+    --quran-bubble-bg: var(--bg-star-cluster);
+    --system-bubble-bg: rgba(200, 220, 255, 0.07);
+    --system-bubble-error-bg: rgba(244, 67, 54, 0.12);
 
-    --border-color: #30363d;
-    --shadow-color: rgba(0, 0, 0, 0.3);
-    --glow-color-primary: rgba(88, 166, 255, 0.3); 
-    --glow-color-secondary: rgba(63, 185, 80, 0.3);
+    --border-color-primary: #283858;
+    --border-color-interactive: var(--accent-aurora-blue);
+    --shadow-soft-glow: 0 0 20px rgba(62, 123, 255, 0.15);
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35); /* Slightly stronger card shadow */
+    --shadow-interactive: 0 4px 12px rgba(0, 0, 0, 0.25);
 
     --font-quran: 'Amiri Quran', serif;
-    --font-ui: 'Noto Kufi Arabic', "Segoe UI", "Helvetica Neue", sans-serif;
-    --base-font-size: 16px;
-    --border-radius-sm: 4px;
-    --border-radius-md: 8px;
-    --border-radius-lg: 12px;
-    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --font-ui-primary: 'Tajawal', "Segoe UI", sans-serif;
+    --font-ui-accent: 'Orbitron', sans-serif;
+    --base-font-size: 16px; /* Will be adjusted with media queries */
+
+    --border-radius-xs: 3px;
+    --border-radius-sm: 6px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 16px;
+    --transition-swift: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Spacing units */
+    --space-xs: 0.25rem; /* 4px */
+    --space-sm: 0.5rem;  /* 8px */
+    --space-md: 1rem;    /* 16px */
+    --space-lg: 1.5rem;  /* 24px */
+    --space-xl: 2rem;    /* 32px */
 }
 
-* {
+/* --- Global Resets & Base Styles --- */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -46,623 +68,506 @@
 html {
     font-size: var(--base-font-size);
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-    font-family: var(--font-ui);
-    background-color: var(--bg-dark);
-    color: var(--text-primary);
+    font-family: var(--font-ui-primary);
+    background-color: var(--bg-deep-space);
+    color: var(--text-luminous);
     display: flex;
     height: 100vh;
-    overflow: hidden;
+    max-height: 100vh; /* Ensure it doesn't exceed viewport height */
+    overflow: hidden; /* Crucial for main layout */
     direction: rtl;
+    background-image: radial-gradient(circle at 100% 0%, rgba(62, 123, 255, 0.08) 0%, transparent 35%),
+                      radial-gradient(circle at 0% 100%, rgba(0, 221, 170, 0.06) 0%, transparent 30%);
+    background-attachment: fixed;
 }
 
-/* Custom Scrollbar Styling */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-::-webkit-scrollbar-track {
-    background: var(--bg-medium);
-    border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-    background: var(--accent-primary);
-    border-radius: 10px;
-    transition: background-color 0.2s ease;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-primary-hover);
-}
-
-/* App Loading Overlay (Added from JS logic - conceptual) */
-#app-loading-overlay .loading-dots.global-loader span {
-    background-color: var(--accent-primary-hover); /* Distinct loader color */
-}
-
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-nebula-void); border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent-aurora-blue), var(--accent-pulsar-green)); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--accent-aurora-blue-hover), var(--accent-pulsar-green-hover)); }
 
 /* --- Main App Layout --- */
 .app-container {
     display: flex;
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
 /* --- Sidebar --- */
 .sidebar {
-    width: 280px;
-    min-width: 260px; 
-    background-color: var(--bg-medium);
-    border-left: 1px solid var(--border-color);
-    padding: 20px 15px;
+    background-color: var(--bg-nebula-void);
+    padding: var(--space-lg) var(--space-md);
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
-    z-index: 1000;
     overflow-y: auto;
-}
-.sidebar-header {
-    text-align: center;
-    margin-bottom: 25px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-color);
-}
-.sidebar-header .logo {
-    font-family: var(--font-quran);
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--accent-primary);
-    text-shadow: 0 0 8px var(--glow-color-primary), 0 0 15px var(--accent-primary); 
-    cursor: default;
-}
-.sidebar-header .logo span {
-    font-family: var(--font-ui);
-    font-size: 0.45em;
-    font-weight: 400;
-    display: block;
-    color: var(--text-secondary);
-    letter-spacing: 1px;
-    margin-top: -5px;
+    z-index: 1000;
+    transition: transform var(--transition-smooth), width var(--transition-smooth), box-shadow var(--transition-smooth);
+    
+    /* Desktop styles */
+    width: 280px;
+    min-width: 260px;
+    border-left: 1px solid var(--border-color-primary); /* Right border in RTL */
+    position: relative; /* Static on desktop */
+    transform: translateX(0);
 }
 
-.sidebar nav ul {
-    list-style: none;
+.sidebar-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--border-color-primary);
 }
-#sidebar-main-nav, #sidebar-other-nav, .recent-recitations-list {
-     margin-bottom: 15px;
+.sidebar-header .logo {
+    font-family: var(--font-ui-accent);
+    font-size: clamp(1.8rem, 4vw, 2.3rem); /* Responsive font size */
+    font-weight: 700;
+    color: var(--accent-aurora-blue);
+    text-shadow: 0 0 10px var(--accent-aurora-blue-glow), 0 0 20px var(--accent-aurora-blue-glow), 0 0 2px #fff;
+    cursor: default;
+    letter-spacing: 1px;
 }
+.sidebar-header .logo span {
+    font-family: var(--font-ui-primary);
+    font-size: 0.4em; /* Relative to parent logo */
+    font-weight: 400;
+    display: block;
+    color: var(--text-celestial);
+    letter-spacing: 2px;
+    margin-top: -3px;
+    text-transform: uppercase;
+}
+
+.sidebar nav ul { list-style: none; padding-right: 0; }
+#sidebar-main-nav, #sidebar-other-nav, .recent-recitations-list { margin-bottom: var(--space-md); }
 
 .sidebar nav ul li a, .recent-recitations-list li {
     display: flex;
     align-items: center;
-    padding: 10px 15px;
-    color: var(--text-secondary);
+    padding: var(--space-sm) var(--space-md);
+    color: var(--text-celestial);
     text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 400;
+    font-size: 0.9rem;
+    font-weight: 500;
     border-radius: var(--border-radius-md);
-    margin-bottom: 6px;
-    transition: var(--transition-smooth);
+    margin-bottom: var(--space-xs);
+    transition: var(--transition-swift);
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
+    border: 1px solid transparent;
 }
 .sidebar nav ul li a .icon {
-    margin-left: 12px;
-    font-size: 1.1em;
-    width: 20px; 
+    margin-left: var(--space-sm);
+    font-size: 1.2em;
+    width: 22px; /* Fixed width for icon alignment */
     text-align: center;
-    color: inherit; /* Inherit color from parent <a> */
+    transition: transform var(--transition-swift);
 }
-.sidebar nav ul li a:hover,
-.sidebar nav ul li a.active,
-.recent-recitations-list li:hover,
-.recent-recitations-list li.active {
-    background-color: rgba(88, 166, 255, 0.12); 
-    color: var(--accent-primary-hover);
-    transform: translateX(3px); 
-    box-shadow: 0 2px 8px rgba(88, 166, 255, 0.1); /* Soft shadow */
+.sidebar nav ul li a:hover, .recent-recitations-list li:hover {
+    background-color: rgba(62, 123, 255, 0.1);
+    color: var(--accent-aurora-blue-hover);
+    border-color: rgba(62, 123, 255, 0.2); /* Use actual RGBA from variables if defined */
+    transform: translateX(-5px); /* Left in RTL */
+    box-shadow: 0 0 15px var(--accent-aurora-blue-glow);
 }
-.sidebar nav ul li a.active::before,
-.recent-recitations-list li.active::before {
-    content: '';
+.sidebar nav ul li a:hover .icon, .recent-recitations-list li:hover .icon { transform: scale(1.1) rotate(-5deg); }
+
+.sidebar nav ul li a.active, .recent-recitations-list li.active {
+    background-color: var(--accent-aurora-blue);
+    color: var(--bg-deep-space);
+    font-weight: 700;
+    box-shadow: 0 4px 15px var(--accent-aurora-blue-glow);
+    transform: translateX(-3px) scale(1.02); /* Left in RTL */
+}
+.sidebar nav ul li a.active::before, .recent-recitations-list li.active::before {
+    content: '✧'; /* Smaller, more subtle active indicator */
     position: absolute;
-    right: 0;
+    right: 8px;
     top: 50%;
     transform: translateY(-50%);
-    width: 4px;
-    height: 60%; /* Slightly smaller active bar */
-    background-color: var(--accent-primary);
-    border-radius: 2px 0 0 2px;
-}
-.recent-recitations-list li {
-    cursor: pointer;
-    font-size: 0.9rem;
-    padding-right: 5px;
-    border-bottom: 1px solid transparent; /* For consistency with nav links on hover */
-}
-.recent-recitations-list li:not(:last-child){
-    margin-bottom: 2px; /* Less margin for recent list */
-}
-
-/* Khatma Progress Bar */
-#khatma-progress-ui {
-    padding: 10px 5px;
-    border-top: 1px solid var(--border-color);
-    margin-top:10px;
-}
-#khatma-progress-ui .khatma-title { /* if you add a title span inside the div later */
     font-size: 0.9em;
-    color: var(--text-secondary);
-    margin-bottom: 8px; /* Increased margin */
-    display: block;
+    opacity: 0.8;
+    color: var(--bg-deep-space); /* Ensure visibility on active background */
 }
-.progress-bar-container {
-    width: 100%;
-    height: 8px;
-    background-color: var(--bg-light);
-    border-radius: var(--border-radius-sm);
-    overflow: hidden;
-    border: 1px solid var(--border-color);
+.sidebar nav ul li a.active .icon, .recent-recitations-list li.active .icon {
+    color: var(--bg-deep-space);
+    transform: scale(1.05);
 }
-.progress-bar-fill {
-    width: 0%; /* Initial width */
-    height: 100%;
-    background-color: var(--accent-secondary);
-    border-radius: var(--border-radius-sm);
-    transition: width 0.5s ease-in-out;
-}
-#khatma-progress-ui .progress-text {
-    font-size: 0.8em;
-    text-align: center;
-    color: var(--text-secondary);
-    margin-top: 5px;
-}
+.recent-recitations-list li { cursor: pointer; font-size: 0.85rem; }
 
+/* Khatma Progress */
+#khatma-progress-ui { padding: var(--space-md) var(--space-xs); border-top: 1px solid var(--border-color-primary); margin-top: var(--space-md); }
+#khatma-progress-ui .khatma-title { font-size: 0.85em; color: var(--text-celestial); margin-bottom: var(--space-sm); display: block; font-weight: 500; }
+.progress-bar-container { width: 100%; height: 10px; background-color: var(--bg-star-cluster); border-radius: var(--border-radius-sm); overflow: hidden; border: 1px solid var(--border-color-primary); box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); }
+.progress-bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, var(--accent-pulsar-green), var(--accent-aurora-blue)); border-radius: var(--border-radius-sm); transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1); box-shadow: 0 0 10px var(--accent-pulsar-green-glow), 0 0 5px var(--accent-aurora-blue-glow); }
+#khatma-progress-ui .progress-text { font-size: 0.8em; text-align: center; color: var(--text-luminous); margin-top: var(--space-sm); font-weight: 500; }
 
 /* --- Chat Interface --- */
 .chat-interface {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background: var(--bg-dark); 
+    background-color: var(--bg-deep-space);
     position: relative;
+    overflow: hidden; /* Prevent chat bubbles from causing horizontal scroll */
+    max-height: 100vh;
 }
 
 .chat-header {
-    padding: 12px 20px;
-    background-color: rgba(22, 27, 34, 0.85); 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
+    padding: var(--space-sm) var(--space-lg);
+    background-color: var(--bg-overlay-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color-primary);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 60px;
+    min-height: 60px; /* Fixed min height */
     position: sticky;
     top: 0;
-    z-index: 100; 
+    z-index: 100;
+    flex-shrink: 0; /* Prevent header from shrinking */
 }
 .chat-header .app-title {
-    font-size: 1.2rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.25rem);
     font-weight: 500;
-    color: var(--text-primary);
+    color: var(--text-luminous);
+    font-family: var(--font-ui-accent);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1; /* Allow title to shrink if needed */
+    margin-left: var(--space-md); /* Space between title and tools in RTL */
 }
+.chat-header .chat-tools { display: flex; gap: var(--space-sm); flex-shrink: 0; /* Prevent tools from shrinking */ }
 .chat-header .chat-tools button {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1.6rem;
-    margin-right: 15px;
-    cursor: pointer;
-    padding: 5px;
-    transition: color 0.2s ease, transform 0.2s ease;
+    background: none; border: none; color: var(--text-celestial);
+    font-size: clamp(1.4rem, 4vw, 1.7rem);
+    cursor: pointer; padding: var(--space-xs);
+    border-radius: 50%; transition: var(--transition-swift);
 }
 .chat-header .chat-tools button:hover {
-    color: var(--accent-primary);
-    transform: scale(1.1);
+    color: var(--accent-aurora-blue-hover);
+    background-color: rgba(62, 123, 255, 0.1);
+    transform: scale(1.1) rotate(5deg);
 }
 
 /* Message Area */
 .message-area {
     flex-grow: 1;
-    padding: 20px 25px;
-    overflow-y: auto;
+    padding: var(--space-lg);
+    overflow-y: auto; /* Allows scrolling for messages */
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Increased gap for more breathing room */
+    gap: var(--space-md);
 }
 .message-bubble {
-    max-width: 78%; /* Slightly increased max-width */
-    padding: 12px 18px; /* Increased padding */
+    max-width: 80%; /* Default max-width */
+    padding: var(--space-sm) var(--space-md);
     border-radius: var(--border-radius-lg);
-    line-height: 1.75;
-    font-size: 0.95rem;
-    box-shadow: 0 3px 8px var(--shadow-color); /* Softer, more spread shadow */
+    line-height: 1.8;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    box-shadow: var(--shadow-card);
     opacity: 0;
-    transform: translateY(15px) scale(0.98);
-    animation: fadeInBubble 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-    animation-delay: 0.05s; /* Shorter delay */
-    position: relative; /* For quick tools */
+    transform: translateY(20px) scale(0.95);
+    animation: fadeInBubble 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    position: relative;
+    border: 1px solid var(--border-color-primary);
+    word-wrap: break-word; /* Ensure long words don't break layout */
 }
-
-@keyframes fadeInBubble {
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
+@keyframes fadeInBubble { to { opacity: 1; transform: translateY(0) scale(1); } }
 
 .message-bubble.user {
-    background: var(--user-bubble-bg);
-    color: #fff;
-    align-self: flex-end; 
-    border-bottom-right-radius: var(--border-radius-sm); 
-    margin-left: auto; 
+    background: var(--user-bubble-bg); color: #fff;
+    align-self: flex-end; margin-left: auto; /* Push to right in RTL */
+    border-bottom-right-radius: var(--border-radius-sm);
+    box-shadow: 0 5px 15px var(--accent-aurora-blue-glow), var(--shadow-card);
 }
 .message-bubble.quran {
-    background-color: var(--quran-bubble-bg);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    align-self: flex-start;
-    border-bottom-left-radius: var(--border-radius-sm); 
-    direction: rtl;
+    background-color: var(--quran-bubble-bg); color: var(--text-luminous);
+    align-self: flex-start; margin-right: auto; /* Push to left in RTL */
+    border-bottom-left-radius: var(--border-radius-sm);
+    direction: rtl; /* Content itself is RTL */
 }
 .message-bubble.system {
-    background-color: var(--system-bubble-bg);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    align-self: center; 
-    max-width: 85%;
-    text-align: center;
-    font-size: 0.9rem;
-    padding: 8px 12px;
-    border-radius: var(--border-radius-md);
-    box-shadow: none; /* System messages usually don't need strong shadow */
+    background-color: var(--system-bubble-bg); border: 1px dashed var(--border-color-primary);
+    color: var(--text-celestial); align-self: center; max-width: 90%; text-align: center;
+    font-size: clamp(0.75rem, 1.8vw, 0.85rem); padding: var(--space-sm); border-radius: var(--border-radius-md);
+    box-shadow: none;
 }
-.message-bubble.system.error { /* Styling for error messages */
-    background-color: var(--system-bubble-error-bg);
-    border-color: var(--accent-error);
-    color: var(--accent-error);
+.message-bubble.system.error {
+    background-color: var(--system-bubble-error-bg); border-color: var(--accent-error-red);
+    color: var(--accent-error-red); text-shadow: 0 0 5px var(--accent-error-red-glow);
 }
 
 .message-bubble.quran .ayah-text {
     font-family: var(--font-quran);
-    font-size: clamp(1.5em, 4vw, 1.9em); /* Slightly larger max for Ayah */
-    margin-bottom: 8px;
-    line-height: 2.3; 
-    font-weight: 500; 
-    cursor: pointer; /* Indicate clickable for quick tools */
-    transition: color 0.2s ease;
+    font-size: clamp(1.5em, 4.5vw, 2em); /* Responsive ayah font size */
+    margin-bottom: var(--space-sm); line-height: 2.4; font-weight: 500;
+    cursor: pointer; transition: color 0.2s ease; color: var(--text-luminous);
 }
-.message-bubble.quran .ayah-text:hover {
-    color: var(--accent-primary-hover); /* Slight highlight on hover */
+.message-bubble.quran .ayah-text .ayah-number-symbol { /* Styling for ﴿١﴾ part */
+    font-family:var(--font-ui-primary); /* Use UI font for numbers */
+    font-size:0.5em; /* Relative to ayah text */
+    color:var(--accent-pulsar-green);
+    margin: 0 var(--space-xs);
 }
+.message-bubble.quran .ayah-text:hover { color: var(--accent-pulsar-green-hover); }
 .message-bubble.quran .ayah-text .highlight {
-    background-color: rgba(88, 166, 255, 0.25);
-    color: var(--accent-primary-hover);
-    padding: 1px 3px;
-    border-radius: var(--border-radius-sm);
-    box-shadow: 0 0 5px var(--glow-color-primary);
+    background-color: rgba(0, 221, 170, 0.2); color: var(--accent-pulsar-green-hover);
+    padding: 2px 4px; border-radius: var(--border-radius-xs); box-shadow: 0 0 8px var(--accent-pulsar-green-glow);
 }
 .message-bubble.quran .surah-info {
-    font-size: 0.75em;
-    color: var(--text-secondary);
-    text-align: left; 
-    display: block; 
-    margin-top: 8px;
-    opacity: 0.8;
+    font-size: 0.7em; color: var(--text-celestial); text-align: left; /* Correct for RTL child */
+    display: block; margin-top: var(--space-sm); opacity: 0.7; font-weight: 300;
 }
 .message-bubble.quran .bismillah {
-    font-family: var(--font-quran);
-    font-size: clamp(1.3em, 3.5vw, 1.7em); /* Slightly larger bismillah */
-    text-align: center;
-    margin-bottom: 12px;
-    display: block;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--accent-secondary);
-    text-shadow: 0 0 5px var(--glow-color-secondary);
+    font-family: var(--font-quran); font-size: clamp(1.3em, 3.8vw, 1.7em); text-align: center;
+    margin-bottom: var(--space-md); display: block; padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border-color-primary); color: var(--accent-nova-orange);
+    text-shadow: 0 0 8px var(--accent-nova-orange-glow);
 }
 
-/* Ayah Quick Tools & Single Ayah Tools */
+/* Ayah Tools */
 .ayah-tools, .ayah-quick-tools {
-    text-align: left; /* For RTL, buttons flow left */
-    margin-top: 10px;
-    padding-top: 8px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    gap: 8px; /* Spacing between tool buttons */
-    flex-wrap: wrap; /* Allow buttons to wrap on small width */
+    text-align: left; /* For button flow */
+    margin-top: var(--space-sm); padding-top: var(--space-sm);
+    border-top: 1px solid rgba(224, 231, 255, 0.1);
+    display: flex; gap: var(--space-sm); flex-wrap: wrap;
 }
-.ayah-quick-tools { /* Specific for popup */
-    border-top: none;
-    padding-top: 0;
-    margin-top: 8px;
-    /* Position it absolutely if needed, or just flow under ayah-text */
+.ayah-quick-tools { border-top: none; padding-top: 0; margin-top: var(--space-sm); }
+.tool-btn {
+    background: rgba(224, 231, 255, 0.08); border: 1px solid var(--border-color-primary);
+    color: var(--text-celestial); padding: var(--space-xs) var(--space-sm);
+    font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+    border-radius: var(--border-radius-sm); cursor: pointer; transition: var(--transition-swift);
+    font-family: var(--font-ui-primary); display: inline-flex; align-items: center;
+    gap: var(--space-xs); box-shadow: var(--shadow-interactive);
 }
-.tool-btn { 
-    background: rgba(255,255,255,0.05); 
-    border: 1px solid var(--border-color); 
-    color: var(--text-secondary); 
-    padding: 5px 10px; 
-    font-size: 0.8em; 
-    border-radius: var(--border-radius-md); 
-    cursor: pointer; 
-    /* margin-left: 6px; remove if using gap */
-    transition: var(--transition-smooth);
-    font-family: var(--font-ui);
-    display: inline-flex; /* For icon and text alignment */
-    align-items: center;
-    gap: 5px; /* Space between icon and text if you add icons */
+.tool-btn:hover {
+    background: var(--accent-aurora-blue); color: var(--bg-deep-space);
+    border-color: var(--accent-aurora-blue); transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 0 15px var(--accent-aurora-blue-glow);
 }
-.tool-btn:hover { 
-    background: var(--accent-primary);
-    color: white;
-    border-color: var(--accent-primary);
-    transform: translateY(-1px);
-}
+.tool-btn .icon { font-size: 1.1em; }
 
-/* Loading dots (also for app-loading-overlay) */
-.loading-dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 0;
-}
+
+/* Typing Indicator */
+.loading-dots { display: flex; justify-content: center; align-items: center; padding: var(--space-xs) 0; }
 .loading-dots span {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    background-color: var(--accent-primary);
-    border-radius: 50%;
-    margin: 0 3px;
-    animation: bounce 1.4s infinite ease-in-out both;
+    display: inline-block; width: 8px; height: 8px; background-color: var(--accent-aurora-blue);
+    border-radius: 50%; margin: 0 3px; animation: bounce 1.4s infinite ease-in-out both;
+    box-shadow: 0 0 5px var(--accent-aurora-blue-glow);
 }
 .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
 .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
 .loading-dots span:nth-child(3) { animation-delay: 0s; }
-@keyframes bounce {
-    0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
-    40% { transform: scale(1.0); opacity: 1; }
-}
+@keyframes bounce { 0%, 80%, 100% { transform: scale(0); opacity: 0.5; } 40% { transform: scale(1.0); opacity: 1; } }
+
 
 /* Input Area */
 .input-area {
     display: flex;
-    padding: 12px 15px;
-    background-color: var(--bg-medium);
-    border-top: 1px solid var(--border-color);
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--bg-nebula-void);
+    border-top: 1px solid var(--border-color-primary);
     align-items: center;
-    gap: 10px;
+    gap: var(--space-sm);
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+    flex-shrink: 0; /* Prevent input area from shrinking */
 }
 .input-area input[type="text"] {
     flex-grow: 1;
-    padding: 12px 18px;
-    border-radius: 25px; 
-    border: 1px solid var(--border-color);
-    background-color: var(--bg-light);
-    color: var(--text-primary);
-    font-size: 1rem;
-    font-family: var(--font-ui);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    min-width: 50px; /* Ensure it doesn't collapse too much */
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--border-radius-lg); border: 1px solid var(--border-color-primary);
+    background-color: var(--bg-star-cluster); color: var(--text-luminous);
+    font-size: clamp(0.9rem, 2.2vw, 1rem);
+    font-family: var(--font-ui-primary); transition: border-color var(--transition-swift), box-shadow var(--transition-swift);
 }
 .input-area input[type="text"]:focus {
-    outline: none;
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 0 3px var(--glow-color-primary);
+    outline: none; border-color: var(--accent-aurora-blue);
+    box-shadow: 0 0 0 3px var(--accent-aurora-blue-glow), inset 0 0 5px rgba(0,0,0,0.1);
 }
-.input-area input[type="text"]::placeholder {
-    color: var(--text-secondary);
-    opacity: 0.7;
-}
+.input-area input[type="text"]::placeholder { color: var(--text-faded-echo); opacity: 1; }
 .input-area button {
-    background: var(--accent-primary);
-    color: #fff;
-    border: none;
+    background: var(--accent-aurora-blue); color: var(--bg-deep-space); border: none;
     border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    font-size: 1.4rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: var(--transition-smooth);
-    box-shadow: 0 2px 5px var(--shadow-color);
+    width: clamp(38px, 8vw, 46px); /* Responsive button size */
+    height: clamp(38px, 8vw, 46px);
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
+    cursor: pointer; display: flex; justify-content: center; align-items: center;
+    transition: var(--transition-swift); box-shadow: 0 3px 8px rgba(62, 123, 255, 0.3);
+    flex-shrink: 0; /* Prevent buttons from shrinking */
 }
 .input-area button:hover {
-    background-color: var(--accent-primary-hover);
-    transform: translateY(-1px) scale(1.05);
-    box-shadow: 0 4px 8px var(--shadow-color);
+    background-color: var(--accent-aurora-blue-hover); transform: translateY(-2px) scale(1.08);
+    box-shadow: 0 5px 15px rgba(62, 123, 255, 0.5);
 }
-.input-area button:active {
-    transform: translateY(0px) scale(1);
-}
-.input-area button#voice-input-btn {
-    background: transparent;
-    color: var(--text-secondary);
-    box-shadow: none;
-}
-.input-area button#voice-input-btn:hover {
-    color: var(--accent-primary);
-    background: rgba(88, 166, 255, 0.1);
-}
+.input-area button:active { transform: translateY(0px) scale(1); box-shadow: 0 2px 5px rgba(62, 123, 255, 0.3); }
+.input-area button#voice-input-btn { background: transparent; color: var(--text-celestial); box-shadow: none; }
+.input-area button#voice-input-btn:hover { color: var(--accent-aurora-blue); background: rgba(62, 123, 255, 0.1); }
 
 
 /* Zen Mode Overlay */
 .zen-mode-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Subtle animated gradient or starfield for Zen background */
-    background: linear-gradient(-45deg, #0d1117, #161b22, #02203c, #1a0a1f);
-    background-size: 400% 400%;
-    animation: zenBackgroundAnimate 25s ease infinite, fadeInZen 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
-    z-index: 2000;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 30px;
-    color: #fff;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(ellipse at center, rgba(10, 15, 24, 0.85) 0%, var(--bg-deep-space) 70%),
+                url('https://www.transparenttextures.com/patterns/stardust.png'); /* Optional texture */
+    background-size: auto, 300px 300px;
+    animation: zenBackgroundAnimate 30s ease infinite, fadeInZen 0.8s var(--transition-smooth);
+    z-index: 2000; display: none; flex-direction: column; justify-content: center;
+    align-items: center; text-align: center; padding: var(--space-lg); color: #fff;
+    overflow-y: auto; /* Allow scrolling if content overflows on small zen screens */
 }
-@keyframes zenBackgroundAnimate {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-@keyframes fadeInZen {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
+@keyframes zenBackgroundAnimate { 0%{background-position:0% 50%, 0% 0%;} 50%{background-position:100% 50%, 50% 50%;} 100%{background-position:0% 50%, 0% 0%;} }
+@keyframes fadeInZen { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+/* fadeInText animation for text elements within Zen mode, keep original */
+@keyframes fadeInText{ from {opacity:0; transform: translateY(10px);} to {opacity:1; transform: translateY(0px);} }
+
+
 .zen-mode-overlay .zen-ayah {
     font-family: var(--font-quran);
-    font-size: clamp(2.5rem, 6vw, 4.2rem); /* Slightly larger max */
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 30px rgba(88, 166, 255, 0.4);
-    margin-bottom: 30px;
-    line-height: 1.9; /* More line height */
-    max-width: 900px;
-    animation: fadeInText 1.5s ease forwards; /* Fade in Ayah text slowly */
-}
-@keyframes fadeInText{
-    from {opacity:0; transform: translateY(10px);}
-    to {opacity:1; transform: translateY(0px);}
+    font-size: clamp(2rem, 7vw, 4.5rem); /* Responsive Zen Ayah */
+    text-shadow: 0 0 15px var(--accent-pulsar-green-glow), 0 0 30px var(--accent-aurora-blue-glow), 0 0 3px #fff;
+    margin-bottom: var(--space-lg); line-height: 2.0; max-width: 950px;
+    animation: fadeInText 1.3s ease-out forwards;
 }
 .zen-mode-overlay .zen-surah-info {
-    color: var(--text-secondary);
-    font-size: 1.3rem;
-    letter-spacing: 0.5px;
-    opacity:0; animation: fadeInText 1.5s ease 0.5s forwards; /* Delay info fade in */
+    color: var(--text-celestial); font-size: clamp(1rem, 3vw, 1.4rem);
+    letter-spacing: 1px; font-family: var(--font-ui-accent);
+    animation: fadeInText 1.3s ease-out 0.4s forwards;
 }
 .zen-mode-overlay .zen-close-btn {
-    position: absolute;
-    top: 25px;
-    left: 25px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #fff;
-    font-size: 1.8rem;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    position: absolute; top: var(--space-md); left: var(--space-md);
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);
+    color: #fff; font-size: clamp(1.5rem, 4vw, 2rem); cursor: pointer;
+    width: clamp(36px, 8vw, 45px); height: clamp(36px, 8vw, 45px);
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    transition: background-color 0.2s ease, transform 0.3s ease; backdrop-filter: blur(5px);
 }
-.zen-mode-overlay .zen-close-btn:hover {
-    background: rgba(255,255,255,0.2);
-    transform: rotate(90deg) scale(1.1); /* Add scale on hover */
-}
-/* Zen Mode Navigation Buttons (JS adds these) */
+.zen-mode-overlay .zen-close-btn:hover { background: rgba(255,255,255,0.15); transform: rotate(180deg) scale(1.15); }
+
 .zen-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    color: white;
-    font-size: 1.8rem; /* Adjust as needed */
-    padding: 8px 12px; /* Adjust padding */
-    cursor: pointer;
-    border-radius: 50%;
-    width: 45px; height: 45px; /* Ensure circular */
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.15);
+    color: white; font-size: clamp(1.5rem, 4vw, 2rem); padding: 0; cursor: pointer;
+    border-radius: 50%; width: clamp(40px, 9vw, 50px); height: clamp(40px, 9vw, 50px);
     display: flex; justify-content: center; align-items: center;
     transition: background-color 0.2s ease, transform 0.2s ease;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3); backdrop-filter: blur(5px);
 }
-.zen-nav-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-50%) scale(1.1);
-}
-/* Position will be set by JS (left/right) */
-
+#zen-nav-prev { right: var(--space-md); /* JS will create these IDs */ }
+#zen-nav-next { left: var(--space-md); }
+.zen-nav-btn:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-50%) scale(1.1); box-shadow: 0 0 10px rgba(255,255,255,0.2); }
 
 /* Mobile Toggle Button for Sidebar */
 .sidebar-toggle-btn {
-    display: none;
-    background: var(--bg-light);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 8px 10px;
-    position: fixed; 
-    top: 10px;     
-    right: 10px;
-    z-index: 1001; 
-    border-radius: var(--border-radius-md);
-    box-shadow: 0 2px 5px var(--shadow-color);
-    transition: background-color 0.2s ease;
+    display: none; /* Shown by media query */
+    background: var(--bg-star-cluster); border: 1px solid var(--border-color-interactive);
+    color: var(--accent-aurora-blue); font-size: 1.8rem; cursor: pointer;
+    padding: var(--space-xs) calc(var(--space-xs) + 2px); /* Slightly adjust padding */
+    position: fixed; /* Will be used when sidebar is also fixed */
+    top: calc(var(--space-sm) + 2px); /* Align with header contents */
+    right: var(--space-md);
+    z-index: 1001; border-radius: var(--border-radius-md);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4); transition: var(--transition-swift);
+    line-height: 1;
 }
 .sidebar-toggle-btn:hover {
-    background-color: var(--accent-primary);
-    color: #fff;
+    background-color: var(--accent-aurora-blue); color: var(--bg-deep-space);
+    box-shadow: 0 0 15px var(--accent-aurora-blue-glow); transform: rotate(10deg) scale(1.05);
 }
 
-/* Responsive Design Adjustments */
+/* Tafsir styles */
+.message-bubble.system .tafsir-header, .message-bubble.tafsir .tafsir-header {
+    font-weight: 700; color: var(--accent-pulsar-green); margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-xs); border-bottom: 1px solid var(--border-color-primary);
+    font-size: 0.9em; text-align: right;
+}
+.message-bubble.system .tafsir-text, .message-bubble.tafsir .tafsir-text {
+    font-family: var(--font-ui-primary); font-size: 0.88rem; line-height: 1.9;
+    color: var(--text-luminous); white-space: pre-line; text-align: right;
+}
+
+
+/* --- Responsive Design Adjustments --- */
+
+/* Medium screens and tablets (e.g., iPad portrait) */
 @media (max-width: 768px) {
-    html { font-size: 15px; } 
+    html { font-size: 15px; } /* Base font slightly smaller */
+
     .sidebar {
-        position: fixed;
+        position: fixed; /* Becomes fixed on mobile */
         top: 0;
-        right: 0; 
+        right: 0; /* Starts off-screen to the right for RTL */
         height: 100%;
-        transform: translateX(100%); 
-        box-shadow: -5px 0 20px rgba(0,0,0,0.3);
-        border-left: none; 
-        border-right: 1px solid var(--border-color); 
+        width: min(280px, 75vw); /* Max 280px, or 75% of viewport width */
+        min-width: 0; /* Remove min-width constraint for mobile */
+        transform: translateX(100%); /* Hidden to the right */
+        box-shadow: -5px 0 30px rgba(0,0,0,0.4);
+        border-left: none; /* Remove original border */
+        border-right: 1px solid var(--border-color-primary); /* Add border on the visible edge (left for RTL) */
     }
     .sidebar.open {
-        transform: translateX(0%);
+        transform: translateX(0%); /* Slide in from the right */
     }
-    .sidebar-toggle-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .chat-header .app-title { font-size: 1.1rem; }
-    .chat-header .chat-tools button { font-size: 1.4rem; margin-right: 8px; }
-    .message-bubble { max-width: 90%; font-size: 0.9rem; }
-    .message-bubble.quran .ayah-text { font-size: clamp(1.3em, 3.8vw, 1.7em); line-height: 2.2;}
-    .input-area { padding: 10px; }
-    .input-area input[type="text"] { font-size: 0.95rem; padding: 10px 15px; }
-    .input-area button { width: 40px; height: 40px; font-size: 1.3rem; }
-    .zen-mode-overlay .zen-ayah { font-size: clamp(1.8rem, 5vw, 2.8rem); line-height:1.8; }
-    .zen-mode-overlay .zen-surah-info { font-size: 1.1rem; }
-    .zen-mode-overlay .zen-close-btn { top:15px; left:15px; width:36px; height:36px; font-size:1.5rem;}
-    .zen-nav-btn { font-size: 1.5rem; width: 40px; height: 40px; padding: 6px 10px;}
+    .sidebar-toggle-btn { display: flex; align-items: center; justify-content: center; }
+
+    .chat-header { min-height: 56px; padding: var(--space-sm) var(--space-md); }
+    .chat-header .app-title { margin-left: var(--space-sm); }
+    .message-area { padding: var(--space-md); gap: var(--space-sm); }
+    .message-bubble { max-width: 88%; padding: var(--space-sm); }
+    .input-area { padding: var(--space-sm); }
 }
 
-@media (max-width: 480px) {
-    .chat-header .app-title { display: none; } 
-    .message-bubble.quran .ayah-text { font-size: clamp(1.2em, 3.5vw, 1.6em); line-height:2.1;}
-    .input-area { gap: 8px; }
-    .sidebar { width: 240px; min-width: 240px; }
-    .tool-btn { font-size:0.75em; padding: 4px 8px;}
-}
-/* ... في ملف style.css ... */
+/* Smaller mobile screens */
+@media (max-width: 520px) {
+    html { font-size: 14px; }
 
-.message-bubble.system .tafsir-header,
-.message-bubble.tafsir .tafsir-header { /* إذا أنشأت sender 'tafsir' */
-    font-weight: 500;
-    color: var(--accent-secondary); /* أو لون آخر مميز للتفسير */
-    margin-bottom: 8px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid var(--border-color);
-    font-size: 0.9em;
+    .sidebar { width: min(250px, 80vw); } /* Sidebar can be a bit narrower */
+    .sidebar-toggle-btn { top: var(--space-sm); right: var(--space-sm); font-size: 1.6rem;}
+
+    .chat-header { padding: var(--space-xs) var(--space-sm); min-height: 50px; }
+    .chat-header .app-title { display: none; } /* Hide title, as per JS behavior example */
+    .chat-header .chat-tools { gap: var(--space-xs); }
+    .chat-header .chat-tools button { font-size: 1.4rem; padding: var(--space-xs); }
+
+    .message-area { padding: var(--space-sm); gap: calc(var(--space-sm) - 2px); }
+    .message-bubble { max-width: 92%; font-size: clamp(0.8rem, 2.5vw, 0.88rem); }
+    .message-bubble.quran .ayah-text { font-size: clamp(1.3em, 4vw, 1.7em); line-height:2.2;}
+    
+    .input-area { padding: var(--space-xs) var(--space-sm); gap: var(--space-xs); }
+    .input-area input[type="text"] { padding: var(--space-sm); }
+    /* Buttons already use clamp, should adapt */
+
+    .tool-btn { font-size:clamp(0.65rem, 1.9vw, 0.75rem); padding: var(--space-xs); }
+
+    .zen-mode-overlay { padding: var(--space-sm); }
+    .zen-mode-overlay .zen-ayah { font-size: clamp(1.6rem, 6vw, 2.8rem); margin-bottom: var(--space-md);}
+    .zen-mode-overlay .zen-surah-info { font-size: clamp(0.9rem, 2.8vw, 1.1rem); }
+    .zen-mode-overlay .zen-close-btn { top:var(--space-sm); left:var(--space-sm); }
+    /* Zen nav buttons already use clamp */
 }
 
-.message-bubble.system .tafsir-text,
-.message-bubble.tafsir .tafsir-text {
-    font-family: var(--font-ui); /* خط واجهة المستخدم العادي للتفسير */
-    font-size: 0.9rem;
-    line-height: 1.8;
-    color: var(--text-primary);
-    white-space: pre-line; /* للحفاظ على فواصل الأسطر من \n بعد تحويلها لـ <br> أو إذا لم تحولها */
+/* Global App Loading Overlay (From JS - ensure styles exist) */
+#app-loading-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(var(--bg-deep-space-rgb, 10, 15, 24), 0.92); /* Assuming --bg-deep-space-rgb is 10,15,24 */
+    z-index: 9999;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    font-family: var(--font-ui-primary); color: var(--accent-aurora-blue);
+    font-size: clamp(1.2rem, 3vw, 1.4rem);
+    text-align: center;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    opacity: 0; transition: opacity 0.35s ease-in-out;
 }
+#app-loading-overlay > div:first-child { margin-bottom: var(--space-md); font-weight: 500; }
+/* Uses .loading-dots already defined */
